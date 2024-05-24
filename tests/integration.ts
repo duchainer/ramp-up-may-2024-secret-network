@@ -35,7 +35,7 @@ const initializeContract = async (
       builder: "",
     },
     {
-      gasLimit: 5000000,
+      gasLimit: 100000000,
     }
   );
 
@@ -72,7 +72,7 @@ const initializeContract = async (
       label: "My contract" + Math.ceil(Math.random() * 10000), // The label should be unique for every contract, add random string in order to maintain uniqueness
     },
     {
-      gasLimit: 1000000,
+      gasLimit: 100000000,
     }
   );
 
@@ -136,7 +136,7 @@ async function initializeAndUploadContract() {
 
   const [contractHash, contractAddress] = await initializeContract(
     client,
-    "contract.wasm"
+    "./target/wasm32-unknown-unknown/release/secret_contract_example.wasm"
   );
 
   var clientInfo: [SecretNetworkClient, string, string] = [
@@ -185,7 +185,7 @@ async function incrementTx(
       sent_funds: [],
     },
     {
-      gasLimit: 200000,
+      gasLimit: 100000000,
     }
   );
 
@@ -204,12 +204,12 @@ async function resetTx(
       contract_address: contractAddress,
       code_hash: contractHash,
       msg: {
-        reser: { count: 0 },
+        reset: { count: 0 },
       },
       sent_funds: [],
     },
     {
-      gasLimit: 200000,
+      gasLimit: 100000000,
     }
   );
 
@@ -263,7 +263,7 @@ async function test_increment_stress(
 }
 
 async function test_gas_limits() {
-  // There is no accurate way to measue gas limits but it is actually very recommended to make sure that the gas that is used by a specific tx makes sense
+  // There is no accurate way to measure gas limits but it is actually very recommended to make sure that the gas that is used by a specific tx makes sense
 }
 
 async function runTestFunction(
